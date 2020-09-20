@@ -1,3 +1,10 @@
 {% extends "list/base.html" %}
 {% block content %}
+<legend class='border-bottom'>Edit Task </legend>
+
+<form method="POST" action="">
+    {% csrf_token%}
+    {{form}}
+    <input class="btn-info btn" type="submit" name="Edit Task">
+</form>
 {% endblock content%}

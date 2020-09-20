@@ -5,11 +5,12 @@
 <form method="POST" action="/">
     {% csrf_token%}
     {{form.title}}
-    <input type="submit" name="Create Task">
+    <input class="btn-info btn" type="submit" name="Create Task">
 </form>
 
 {% for task in tasks %}
     <div>
+        <a href="{% url 'edit-task' task.id%}" >Edit</a>
         <p>{{task}}</p>
     </div>
 {% endfor %}
