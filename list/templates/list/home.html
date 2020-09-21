@@ -28,6 +28,7 @@
 
 
     <div style="text-align: right;" class="mb-2 mt-3">
+
         <small style="text-align: left;" class="text-muted ml-2">{{ task.date_time|date:"F d, Y" }}</small>
         <small style="text-align: left;" class="text-muted ml-2">{{ task.created }}</small>
         <a href="{% url 'edit-task' task.id%}" class="fas fa-pen mr-3 ml-3"></a>
