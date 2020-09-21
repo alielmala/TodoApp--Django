@@ -1,10 +1,10 @@
 {% extends "list/base.html" %}
 {% block content %}
-<legend class='border-bottom'>Update Task </legend>
+{%load crispy_forms_tags%}
 
 <form method="POST" action="">
     {% csrf_token%}
-    {{form}}
+    {{form|crispy}}
     <input class="btn-info btn" type="submit" name="Update Task">
 </form>
 {% endblock content%}

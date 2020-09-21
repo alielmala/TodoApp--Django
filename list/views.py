@@ -18,14 +18,15 @@ def index(request):
 
 def editTask(request, pk):
     task = Task.objects.get(id=pk)
-    form = TaskForm(instance=task)
+    form = EditTask(instance=task)
     if request.method== 'POST':
-        form = TaskForm(request.POST, instance=task)
+        form = EditTask(request.POST, instance=task)
         if form.is_valid():
             form.save()
         return redirect('/')
     context = {'form': form}
     return render(request,'list/task_edit.html',context)
+
 def deleteTask(request, pk):
     item = Task.objects.get(id=pk)
     if request.method== 'POST':

@@ -1,22 +1,39 @@
 {% extends "list/base.html" %}
 {% block content %}
-<legend class='border-bottom'>To Do</legend>
+{%load crispy_forms_tags%}
 
-<form method="POST" action="/">
-    {% csrf_token%}
-    {{form.title}}
-    <input class="btn-info btn" type="submit" name="Create Task">
-</form>
+<div class="content-section mb-5">
+    <form method="POST" action="/">
+        {% csrf_token%}
+        {{form|crispy}}
+        <div class="form-group">
+            <button type="submit" name="button" class="btn btn-outline-info"> Add</button>
+        </div>
+    </form>
+</div>
+
 
 {% for task in tasks %}
-    <div>
-        <a href="{% url 'edit-task' task.id%}" >Update</a>
-        <a href="{% url 'delete-task' task.id%}" >Delete</a>
+<div class="list-wrapper border-bottom ">
+    <div style="float: left;">
         {% if task.complete == True %}
-        <strike>{{task}}</strike>
+        <strike class="completed ml-3">{{task}}</strike>
+
         {% else %}
-        <span>{{task}}</span>
+        <span class="ml-3">{{task}}</span>
         {% endif%}
+
+
     </div>
+
+
+    <div style="text-align: right;" class="mb-2 mt-3">
+        <small style="text-align: left;" class="text-muted ml-2">{{ task.date_time|date:"F d, Y" }}</small>
+        <small style="text-align: left;" class="text-muted ml-2">{{ task.created }}</small>
+        <a href="{% url 'edit-task' task.id%}" class="fas fa-pen mr-3 ml-3"></a>
+        <a href="{% url 'delete-task' task.id%}" class=" fas fa-trash-alt"></a>
+    </div>
+</div>
 {% endfor %}
+
 {% endblock content%}
